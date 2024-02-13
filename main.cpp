@@ -11,45 +11,45 @@ protected:
   string nombre;
   string telefono;
   int edad;
-  string contraseña;
+  string contrasenna;
 
 public:
-  Usuario(string _nombre, string _telefono, int _edad, string _contraseña)
+  Usuario(string _nombre, string _telefono, int _edad, string _contrasenna)
       : nombre(_nombre), telefono(_telefono), edad(_edad),
-        contraseña(_contraseña) {}
+        contrasenna(_contrasenna) {}
 
-  virtual bool login(string _nombre, string _contraseña) {
-    return (nombre == _nombre && contraseña == _contraseña);
+  virtual bool login(string _nombre, string _contrasenna) {
+    return (nombre == _nombre && contrasenna == _contrasenna);
   }
 
-  virtual void logout() { cout << "Sesión cerrada." << endl; }
+  virtual void logout() { cout << "Sesion cerrada." << endl; }
 
-  void cambiarPwd(string viejaContraseña, string nuevaContraseña) {
-    if (contraseña == viejaContraseña) {
-      contraseña = nuevaContraseña;
-      cout << "Contraseña cambiada exitosamente." << endl;
+  void cambiarPwd(string viejaContrasenna, string nuevaContrasenna) {
+    if (contrasenna == viejaContrasenna) {
+      contrasenna = nuevaContrasenna;
+      cout << "Contrasenna cambiada exitosamente." << endl;
     } else {
-      cout << "La contraseña anterior es incorrecta." << endl;
+      cout << "La contrasenna anterior es incorrecta." << endl;
     }
   }
 };
 
 class Cliente : public Usuario {
 public:
-  Cliente(string _nombre, string _telefono, int _edad, string _contraseña)
-      : Usuario(_nombre, _telefono, _edad, _contraseña) {}
+  Cliente(string _nombre, string _telefono, int _edad, string _contrasenna)
+      : Usuario(_nombre, _telefono, _edad, _contrasenna) {}
 
   void comprar() { cout << "Compra realizada." << endl; }
 
   void reclamar() { cout << "Reclamo realizado." << endl; }
 
-  void devolucion() { cout << "Devolución realizada." << endl; }
+  void devolucion() { cout << "Devolucion realizada." << endl; }
 };
 
 class Vendedor : public Usuario {
 public:
-  Vendedor(string _nombre, string _telefono, int _edad, string _contraseña)
-      : Usuario(_nombre, _telefono, _edad, _contraseña) {}
+  Vendedor(string _nombre, string _telefono, int _edad, string _contrasenna)
+      : Usuario(_nombre, _telefono, _edad, _contrasenna) {}
 
   void vender() { cout << "Venta realizada." << endl; }
 
@@ -64,23 +64,23 @@ int main() {
   Usuario *usuario = nullptr;
 
   if (opcion == "cliente") {
-    usuario = new Cliente("Juan", "123456789", 30, "contraseña123");
+    usuario = new Cliente("Juan", "123456789", 30, "contrasenna123");
   } else if (opcion == "vendedor") {
-    usuario = new Vendedor("Maria", "987654321", 25, "contraseña456");
+    usuario = new Vendedor("Maria", "987654321", 25, "contrasenna456");
   } else {
-    cout << "Opción no válida." << endl;
+    cout << "Opcion no valida." << endl;
     return 1;
   }
 
-  string nombreUsuario, contraseña;
+  string nombreUsuario, contrasenna;
   cout << "Ingresa tu nombre de usuario: ";
   cin >> nombreUsuario;
-  cout << "Ingresa tu contraseña: ";
-  cin >> contraseña;
+  cout << "Ingresa tu contrasenna: ";
+  cin >> contrasenna;
 
-  if (usuario->login(nombreUsuario, contraseña)) {
-    cout << "Inicio de sesión exitoso como " << opcion << "." << endl;
-    usuario->cambiarPwd(contraseña, "nuevaContraseña");
+  if (usuario->login(nombreUsuario, contrasenna)) {
+    cout << "Inicio de sesion exitoso como " << opcion << "." << endl;
+    usuario->cambiarPwd(contrasenna, "nuevaContrasenna");
 
     if (opcion == "cliente") {
       Cliente *cliente = dynamic_cast<Cliente *>(usuario);
@@ -95,7 +95,7 @@ int main() {
 
     usuario->logout();
   } else {
-    cout << "Inicio de sesión fallido." << endl;
+    cout << "Inicio de sesion fallido." << endl;
   }
 
   return 0;
